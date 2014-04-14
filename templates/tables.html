@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+	{% for occupied in tables %}
+		{% if occupied %}
+			<div class='full'>
+				Red
+			</div>
+		{% else %}
+			<div class='empty'>
+				Green
+			</div>
+		{% endif %}
+	{% endfor %}
+{% endblock %}
