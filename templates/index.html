@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-	{% for place in places %}
-		{{ place }}
-	{% endfor %}
+	<ul>
+		{% for place in places %}
+			<li>
+				<a href='/table?place={{ place }}'>{{ place }}</a>
+			</li>
+		{% endfor %}
+	</ul>
 {% endblock %}

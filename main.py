@@ -38,14 +38,14 @@ class MainHandler(BaseHandler):
         self.render_template('index.html',{
             'places' : places
             })
-    def post(self):
-
-
+    
 class Table(BaseHandler):
     def get(self):
+        place = self.request.get('place')
         data = [random.choice([True,False]) for i in range(10)]
         self.render_template('tables.html',{
-            'tables' : data
+            'tables' : data,
+            'place' : place
             })
 
     def post(self):
