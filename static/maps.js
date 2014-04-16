@@ -1,5 +1,5 @@
 var initialLocation;
-var singapore = new google.maps.LatLng(1.328, 103.826);
+var singapore = new google.maps.LatLng(1.297553,103.849495);
 var browserSupportFlag = new Boolean();
 var places = [
 	['Old Airport Road Food Centre',1.307233,103.884117],
@@ -75,7 +75,11 @@ function initialize() {
 			var marker = new google.maps.Marker({
 				position: myLatLng,
 				map: map,
-				title: place[0]
+				title: place[0],
+				url: '/table?place=' + encodeURIComponent(place[0])
+			});
+			google.maps.event.addListener(marker, 'click', function() {
+				window.location.href = this.url;
 			});
 		}
 	}
