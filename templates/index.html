@@ -3,7 +3,7 @@
 	<ul>
 		{% for place in places %}
 			<li>
-				<a href='/table?place={{ place }}'>{{ place }}</a>
+				<a data-transition="slideup" href='/table?place={{ place }}'>{{ place }}</a>
 			</li>
 		{% endfor %}
 	</ul>

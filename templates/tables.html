@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-	<h1>{{ place }}</h1>
+	<div data-role="header" data-add-back-btn="true">
+		<a data-icon="back" class="ui-btn-left" data-rel="back">Back</a>
+		<h1>{{ place }}</h1>
+		<!--<a href="index.html" data-icon="gear" class="ui-btn-right">Options</a>-->
+	</div>
+	<!--<h1>{{ place }}</h1>-->
 	{% for occupied in tables %}
 		{% if occupied %}
 			<div class='full'>
