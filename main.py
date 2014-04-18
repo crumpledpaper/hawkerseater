@@ -42,15 +42,19 @@ class MainHandler(BaseHandler):
 class Table(BaseHandler):
     def get(self):
         place = self.request.get('place')
-        data = [random.choice([True,False]) for i in range(10)]
+        tables = self.request.get('tables')
+        #tables = [random.choice([True,False]) for i in range(10)]
         self.render_template('tables.html',{
-            'tables' : data,
+            'tables' : tables,
             'place' : place
             })
 
     def post(self):
         #get data from raspberry pi
-        pass
+        place = self.request.get('place')
+        tables = self.request.get('form')
+        self.redirect('/table?' + urllib.urlencode({'tables' : tables,
+                                                    'place' : place}))
 
 class Maps(BaseHandler):
     def get(self):
