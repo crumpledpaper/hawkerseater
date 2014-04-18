@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-	<h1>{{ place }}</h1>
+	<div data-role="header">
+		<a href="index.html" data-rel="back" data-icon="back" class="ui-btn-left">Options</a>
+		<h1>{{place}}</h1>
+	</div>
 	{% for occupied in tables %}
 		{% if occupied %}
 			<div class='full'>
@@ -12,4 +15,17 @@
 			</div>
 		{% endif %}
 	{% endfor %}
+	
+	<div data-role="footer">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" data-icon="grid">Tables</a></li>
+				<li><a href="#" data-icon="camera">Camera</a></li>
+				<li><a href="#" data-icon="info">Info</a></li>
+				<li><a href="#" data-icon="bullets">Food List</a></li>
+				
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+	
 {% endblock %}
