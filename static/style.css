@@ -11,3 +11,22 @@
 	height: 30px;
 	background-color : red;
 }
+
+.circle{
+	-moz-border-radius: 18px;
+	-webkit-border-radius: 18px;
+	border-radius: 18px;
+	border: solid 4pt rgb(112,112,112);
+	background-color: #FF00FF;
+	width: 18px;
+	height: 18px;
+	float:left
+}
+
+.red{
+	background-color: #FF0000
+}
+
+.green{
+	background-color: #00FF00
+}
