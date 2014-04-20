@@ -1,54 +1,156 @@
 {% extends "base.html" %}
 {% block content %}
-	<div data-role="header">
-		<a href="index.html" data-rel="back" data-icon="back" class="ui-btn-left">Back</a>
-		<h1>{{place}}</h1>
-	</div>
-	{% for occupied in tables %}
-		{% if occupied %}
-			<div class='full'>
-				Red
-			</div>
-		{% else %}
-			<div class='empty'>
-				Green
-			</div>
-		{% endif %}
-	{% endfor %}
 	
-<!--	<div style="width: 100vw" class="scrollable-wrapper">
--->
-		<!--<div style="margin-left:auto; margin-right:auto; margin-top:15px; width:1200px; overflow:auto">-->
-			<div style="overflow-x: scroll">
-				<div style="width: 1200px; overflow:auto"> <!-- float-wrap -->
-					<div class="circle" style="margin-left:230px">&nbsp;</div>
-					<div class="red circle" style="margin-left:55px;">&nbsp;</div>
-					<div class="green circle" style="margin-left:85px;">&nbsp;</div>
-					<div class="red circle" style="margin-left:55px;">&nbsp;</div>
-					<div class="green circle" style="margin-left:92px;">&nbsp;</div>
-					<div class="green circle" style="margin-left:55px;">&nbsp;</div>
-					<div class="green circle" style="margin-left:85px;">&nbsp;</div>
-					<div class="green circle" style="margin-left:55px;">&nbsp;</div>
-				</div>
-				<img src="/static/img/tables.png">
+	
+	<div data-role="page" id="tablesPage">
+	
+		<!--<div data-role="panel" id="panel" data-position="right">-->
+		<!--	test-->
+		<!--</div><!-- /panel -->
+	
+	
+		<div data-role="header" data-position="fixed">
+			<a href="/maps" data-transition="slidedown" data-icon="location" class="ui-btn-left">Map</a>
+			<h1>{{place}}</h1>
+			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+				<a href="#share" class="ui-mini ui-btn ui-btn-icon-right ui-icon-action ui-btn-icon-notext">Share</a>
+        <a href="#fav" class="ui-mini ui-btn ui-btn-icon-right ui-icon-star ui-btn-icon-notext">Favorite</a>
+
 			</div>
 			
-				
-			
-		<!--</div>-->
+		</div>
+		<!--{% for occupied in tables %}-->
+		<!--	{% if occupied %}-->
+		<!--		<div class='full'>-->
+		<!--			Red-->
+		<!--		</div>-->
+		<!--	{% else %}-->
+		<!--		<div class='empty'>-->
+		<!--			Green-->
+		<!--		</div>-->
+		<!--	{% endif %}-->
+		<!--{% endfor %}-->
+		
+		<div role="main" class="ui-content" style="overflow-x: scroll; ">
+			<div style="width: 1200px; overflow:auto"> <!-- float-wrap -->
+				<div class="circle" style="margin-left:230px">&nbsp;</div>
+				<div class="red circle" style="margin-left:55px;">&nbsp;</div>
+				<div class="green circle" style="margin-left:85px;">&nbsp;</div>
+				<div class="red circle" style="margin-left:55px;">&nbsp;</div>
+				<div class="green circle" style="margin-left:92px;">&nbsp;</div>
+				<div class="green circle" style="margin-left:55px;">&nbsp;</div>
+				<div class="green circle" style="margin-left:85px;">&nbsp;</div>
+				<div class="green circle" style="margin-left:55px;">&nbsp;</div>
+			</div>
+			<img src="/static/img/tables.png">
+		</div>
+		
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#" class="ui-btn-active" data-icon="grid">Tables</a></li>
+					<li><a href="#cameraPage" data-icon="camera" data-transition="none">Camera</a></li>
+					<li><a href="#infoPage" data-icon="info" data-transition="none">Info</a></li>
+					<li><a href="#foodPage" data-icon="bullets" data-transition="none">Food List</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
 	
-<!--	</div>
--->	
-	<div data-role="footer">
-		<div data-role="navbar">
-			<ul>
-				<li><a href="#" class="ui-btn-active" data-icon="grid">Tables</a></li>
-				<li><a href="#" data-icon="camera">Camera</a></li>
-				<li><a href="#" data-icon="info">Info</a></li>
-				<li><a href="#" data-icon="bullets">Food List</a></li>
-				
-			</ul>
-		</div><!-- /navbar -->
-	</div><!-- /footer -->
+	
+	</div> <!-- /tablesPage -->
+	
+	<div data-role="page" id="cameraPage">
+	
+		<div data-role="header" data-position="fixed">
+			<a href="/maps" data-transition="slidedown" data-icon="location" class="ui-btn-left">Map</a>
+			<h1>{{place}}</h1>
+			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+				<a href="#share" class="ui-mini ui-btn ui-btn-icon-right ui-icon-action ui-btn-icon-notext">Share</a>
+        <a href="#fav" class="ui-mini ui-btn ui-btn-icon-right ui-icon-star ui-btn-icon-notext">Favorite</a>
+
+			</div>
+		</div>
+		
+		<div role="main" class="ui-content" style="overflow-x: scroll; ">
+			<img src="/static/img/camera.jpeg">
+		</div>
+			
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#tablesPage" data-icon="grid" data-transition="none">Tables</a></li>
+					<li><a href="#" class="ui-btn-active" data-icon="camera">Camera</a></li>
+					<li><a href="#infoPage" data-icon="info" data-transition="none">Info</a></li>
+					<li><a href="#foodPage" data-icon="bullets" data-transition="none">Food List</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+	</div> <!-- /cameraPage -->
+	
+	<div data-role="page" id="infoPage">
+	
+		<div data-role="header" data-position="fixed">
+			<a href="/maps" data-transition="slidedown" data-icon="location" class="ui-btn-left">Map</a>
+			<h1>{{place}}</h1>
+			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+				<a href="#share" class="ui-mini ui-btn ui-btn-icon-right ui-icon-action ui-btn-icon-notext">Share</a>
+        <a href="#fav" class="ui-mini ui-btn ui-btn-icon-right ui-icon-star ui-btn-icon-notext">Favorite</a>
+
+			</div>
+		</div>
+		
+		<div role="main" class="ui-content" style="overflow-x: scroll; ">
+			<p>Test</p>
+		</div>
+			
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#tablesPage" data-icon="grid" data-transition="none">Tables</a></li>
+					<li><a href="#cameraPage" data-icon="camera" data-transition="none">Camera</a></li>
+					<li><a href="#" class="ui-btn-active" data-icon="info">Info</a></li>
+					<li><a href="#foodPage" data-icon="bullets" data-transition="none">Food List</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+	</div> <!-- /infoPage -->
+	
+	<div data-role="page" id="foodPage">
+	
+		<div data-role="header" data-position="fixed">
+			<a href="/maps" data-transition="slidedown" data-icon="location" class="ui-btn-left">Map</a>
+			<h1>{{place}}</h1>
+			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+				<a href="#share" class="ui-mini ui-btn ui-btn-icon-right ui-icon-action ui-btn-icon-notext">Share</a>
+        <a href="#fav" class="ui-mini ui-btn ui-btn-icon-right ui-icon-star ui-btn-icon-notext">Favorite</a>
+
+			</div>
+		</div>
+		
+		<div role="main" class="ui-content" style="overflow-x: scroll; ">
+			<p>Fooood</p>
+		</div>
+			
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#tablesPage" data-icon="grid" data-transition="none">Tables</a></li>
+					<li><a href="#cameraPage" data-icon="camera" data-transition="none">Camera</a></li>
+					<li><a href="#infoPage" data-icon="info" data-transition="none">Info</a></li>
+					<li><a href="#" class="ui-btn-active" data-icon="bullets">Food List</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+	</div> <!-- /foodPage -->
 	
 {% endblock %}
