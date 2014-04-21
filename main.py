@@ -35,10 +35,15 @@ class MainHandler(BaseHandler):
                   'Zion Riverside Food Centre',
                   'Adam Food Centre',
                   'Bedok South 16 Hawker Centre',
-                  'Bedok Food Centre'
+                  'Bedok Food Centre',
+                  'The Centrepoint',
+                  'Juz Food Court',
+                  '67 Killiney Kopitiam',
+                  '3 Rochor Road Kopitiam'
                   ]
         self.render_template('index.html',{
-            'places' : places
+            'places' : places,
+            'token' : 'test'
             })
     
 class Table(BaseHandler):

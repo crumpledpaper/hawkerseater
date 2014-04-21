@@ -74,6 +74,7 @@ function initialize() {
 			var myLatLng = new google.maps.LatLng(place[1], place[2]);
 			var marker = new google.maps.Marker({
 				position: myLatLng,
+				icon: ['http://maps.google.com/mapfiles/ms/icons/green-dot.png','http://maps.google.com/mapfiles/ms/icons/yellow-dot.png','http://maps.google.com/mapfiles/ms/icons/red-dot.png'][Math.floor(Math.random() * 3)],
 				map: map,
 				title: place[0],
 				url: '/table?place=' + encodeURIComponent(place[0])

@@ -15,16 +15,20 @@
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 	<script type="text/javascript" src="http://jquery-ui-map.googlecode.com/svn/trunk/demos/js/modernizr-2.0.6/modernizr.min.js"></script>		
-	
+	<script type="text/javascript" src="/_ah/channel/jsapi"></script>
 	<link rel="stylesheet" href="/static/style.css" />
-	<script type="text/javascript"
-		src="/static/maps.js">
-	</script>		
+	<script type="text/javascript" src="/static/maps.js"></script>		
   </head>
   <body>
-	<!--<a href='/'>Home</a>
-	<a href='/maps'>Map View</a>-->
 	{% block content %}
 	{% endblock %}
+	<script>
+		channel = new goog.appengine.Channel('{{ token }}');
+		socket = channel.open();
+		socket.onopen = onOpened;
+		socket.onmessage = onMessage;
+		socket.onerror = onError;
+		socket.onclose = onClose;
+	</script>
   </body>
 </html>
