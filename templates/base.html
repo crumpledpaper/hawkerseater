@@ -22,8 +22,42 @@
 	</script>		
   </head>
   <body>
-	<!--<a href='/'>Home</a>
-	<a href='/maps'>Map View</a>-->
+		<div id="fb-root"></div>
+		<script>
+			window.fbAsyncInit = function() {
+			FB.init({
+			appId : '1441303052782667',
+			status : true, // check login status
+			cookie : true, // enable cookies to allow the server to access the session
+			xfbml : true // parse XFBML
+			});
+			};
+			 
+			(function() {
+			var e = document.createElement('script');
+			e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+			e.async = true;
+			document.getElementById('fb-root').appendChild(e);
+			}());
+		</script>
+		
+		<script type="text/javascript">
+			function shareFacebook(){
+				console.log("click")
+				FB.ui(
+				{
+				method: 'feed',
+				name: 'Sit and Eat',
+				link: 'http://www.hawkerseater.appspot.com',
+				picture: 'http://www.hawkerseater.appspot.com/static/img/thumb/1.jpg',
+				caption: 'I love Sit And Eat!',
+				description: 'Awesome app that allows me to look for a nearby hawker center or food court with seats!',
+				message: 'I have found a seat at {{place}}!'
+				});
+			}
+		</script>
+		
+		
 	{% block content %}
 	{% endblock %}
   </body>
