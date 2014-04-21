@@ -1,5 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-	<div id="map-canvas" style="width: 100%; height: 88vh;"></div>
-	<input type="search" name="search" id="search-basic" value="">
+	<div data-role="page">
+		
+		<div data-role="panel" id="favorites" data-position="right" data-display="overlay">
+				<!-- panel content goes here -->
+				<ul data-role="listview" data-filter="true" data-filter-placeholder="Search favorites..." data-inset="true">
+					{% for place in places %}
+						<li><a data-transition="slideup" href='/table?place={{ place }}'>{{ place }}</a></li>
+					{% endfor %}	
+				</ul>
+		</div><!-- /panel -->
+		
+		<div role="main">
+			<div id="map-canvas" style="width: 100%; height: 92vh;"></div>
+			<!--<div id="map-canvas"></div>-->
+		</div>
+		
+		<div data-role="footer" data-position="fixed">
+			<input type="search" name="search" id="search-basic" value="">
+			<a href="#favorites" data-icon="star" class="ui-btn-right">Favorites</a>
+		</div>
+		
+	</div>
 {% endblock %}
