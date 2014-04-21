@@ -5,6 +5,8 @@ import random
 import jinja2
 import webapp2
 
+from google.appengine.api import channel
+
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'templates')),
     extensions=['jinja2.ext.autoescape'],
@@ -33,24 +35,33 @@ class MainHandler(BaseHandler):
                   'Zion Riverside Food Centre',
                   'Adam Food Centre',
                   'Bedok South 16 Hawker Centre',
-                  'Bedok Food Centre'
+                  'Bedok Food Centre',
+                  'The Centrepoint',
+                  'Juz Food Court',
+                  '67 Killiney Kopitiam',
+                  '3 Rochor Road Kopitiam'
                   ]
         self.render_template('index.html',{
-            'places' : places
+            'places' : places,
+            'token' : 'test'
             })
     
 class Table(BaseHandler):
     def get(self):
         place = self.request.get('place')
-        data = [random.choice([True,False]) for i in range(10)]
+        tables = self.request.get('tables')
+        #tables = [random.choice([True,False]) for i in range(10)]
         self.render_template('tables.html',{
-            'tables' : data,
+            'tables' : tables,
             'place' : place
             })
 
     def post(self):
         #get data from raspberry pi
-        pass
+        place = self.request.get('place')
+        tables = self.request.get('form')
+        self.redirect('/table?' + urllib.urlencode({'tables' : tables,
+                                                    'place' : place}))
 
 class Maps(BaseHandler):
     def get(self):

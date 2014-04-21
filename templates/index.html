@@ -1,10 +1,362 @@
 {% extends "base.html" %}
 {% block content %}
-	<ul>
-		{% for place in places %}
-			<li>
-				<a data-transition="slideup" href='/table?place={{ place }}'>{{ place }}</a>
-			</li>
-		{% endfor %}
-	</ul>
+	<div data-role="page" id="mapsPage">
+		
+		<div data-role="panel" id="favorites" data-position="right" data-display="overlay">
+				<!-- panel content goes here -->
+				<ul data-role="listview" data-filter="true" data-filter-placeholder="Search favorites...">
+					{% for place in places %}
+						<li><a data-transition="slideup" href='#tablesPage?place={{ place }}'>{{ place }}</a></li>
+					{% endfor %}	
+				</ul>
+		</div><!-- /panel -->
+		
+		<div role="main">
+			<div id="map-canvas" style="width: 100%; height: 92vh;"></div>
+			<!--<div id="map-canvas"></div>-->
+		</div>
+		
+		<div data-role="footer" data-position="fixed">
+			<input type="search" name="search" id="search-basic" value="">
+			<a href="#favorites" data-icon="star" class="ui-btn-right">Favorites</a>
+		</div>
+		
+	</div> <!-- /mapsPage -->
+	
+	<div data-role="page" id="tablesPage">
+	
+		<div data-role="popup" id="favDialog" >
+		
+			<div role="main" class="ui-content">
+				<img class="centralize-image" src="/static/img/star.png">
+				<div class="ui-body ui-body-a ui-corner-all">
+					<p>Location Saved Into Favorites!</p>
+					<a href="#" data-transition="pop" class="ui-btn ui-icon-check" data-rel="back">Take Me Back!</a>
+				</div>
+			</div>
+			
+		</div> <!-- /favDialog -->
+		
+		
+		
+		<div data-role="header" data-position="fixed">
+			<a href="#mapsPage" data-transition="slidedown" data-icon="location" class="ui-btn-left">Map</a>
+			<h1>{{place}}</h1>
+			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+				<a href="" onclick="shareFacebook()" class="ui-mini ui-btn ui-btn-icon-right ui-icon-action ui-btn-icon-notext">Share</a>
+        <a href="#favDialog" data-rel="popup" class="ui-mini ui-btn ui-btn-icon-right ui-icon-star ui-btn-icon-notext" data-transition="pop">Favorite</a>
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		<!--{% for occupied in tables %}-->
+		<!--	{% if occupied %}-->
+		<!--		<div class='full'>-->
+		<!--			Red-->
+		<!--		</div>-->
+		<!--	{% else %}-->
+		<!--		<div class='empty'>-->
+		<!--			Green-->
+		<!--		</div>-->
+		<!--	{% endif %}-->
+		<!--{% endfor %}-->
+		
+		<div role="main" class="ui-content" style="overflow-x: scroll;">
+			<div style="overflow:auto; white-space: nowrap; height:14px; width:625px;" class="centralize-image"> <!-- float-wrap -->
+				<div class="circle" style="margin-left:120px">&nbsp;</div>
+				<div class="red circle" style="margin-left:30px;">&nbsp;</div>
+				<div class="green circle" style="margin-left:43px;">&nbsp;</div>
+				<div class="red circle" style="margin-left:30px;">&nbsp;</div>
+				<div class="green circle" style="margin-left:47px;">&nbsp;</div>
+				<div class="green circle" style="margin-left:30px;">&nbsp;</div>
+				<div class="green circle" style="margin-left:47px;">&nbsp;</div>
+				<div class="green circle" style="margin-left:30px;">&nbsp;</div>
+			</div>
+			<img src="/static/img/tables.png" style="height:500px;" class="centralize-image">
+		</div>
+		
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#" class="ui-btn-active" data-icon="grid">Tables</a></li>
+					<li><a href="#cameraPage" data-icon="camera" data-transition="none">Camera</a></li>
+					<li><a href="#reviewsPage" data-icon="comment" data-transition="none">Reviews</a></li>
+					<li><a href="#infoPage" data-icon="info" data-transition="none">Info</a></li>
+					<li><a href="#foodPage" data-icon="bullets" data-transition="none">Food List</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+	</div> <!-- /tablesPage -->
+	
+	<div data-role="page" id="cameraPage">
+	
+		<div data-role="popup" id="favDialog2" >
+		
+			<div role="main" class="ui-content">
+				<img class="centralize-image" src="/static/img/star.png">
+				<div class="ui-body ui-body-a ui-corner-all">
+					<p>Location Saved Into Favorites!</p>
+					<a href="#" data-transition="pop" class="ui-btn ui-icon-check" data-rel="back">Take Me Back!</a>
+				</div>
+			</div>
+			
+		</div> <!-- /favDialog -->
+	
+		<div data-role="header" data-position="fixed">
+			<a href="#mapsPage" data-transition="slidedown" data-icon="location" class="ui-btn-left">Map</a>
+			<h1>{{place}}</h1>
+			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+				<a href="" onclick="shareFacebook()" class="ui-mini ui-btn ui-btn-icon-right ui-icon-action ui-btn-icon-notext">Share</a>
+        <a href="#favDialog2" data-rel="popup" class="ui-mini ui-btn ui-btn-icon-right ui-icon-star ui-btn-icon-notext" data-transition="pop">Favorite</a>
+
+			</div>
+		</div>
+		
+		<div role="main" class="ui-content" style="overflow-x: scroll; ">
+			<img src="/static/img/camera.jpeg" style="height: 515px" class="centralize-image" >
+		</div>
+			
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#tablesPage" data-icon="grid" data-transition="none">Tables</a></li>
+					<li><a href="#" class="ui-btn-active" data-icon="camera">Camera</a></li>
+					<li><a href="#reviewsPage" data-icon="comment" data-transition="none">Reviews</a></li>
+					<li><a href="#infoPage" data-icon="info" data-transition="none">Info</a></li>
+					<li><a href="#foodPage" data-icon="bullets" data-transition="none">Food List</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+	</div> <!-- /cameraPage -->
+	
+	<div data-role="page" id="reviewsPage">
+	
+		<div data-role="popup" id="favDialog3" >
+		
+			<div role="main" class="ui-content">
+				<img class="centralize-image" src="/static/img/star.png">
+				<div class="ui-body ui-body-a ui-corner-all">
+					<p>Location Saved Into Favorites!</p>
+					<a href="#" data-transition="pop" class="ui-btn ui-icon-check" data-rel="back">Take Me Back!</a>
+				</div>
+			</div>
+			
+		</div> <!-- /favDialog -->
+	
+		<div data-role="header" data-position="fixed">
+			<a href="#mapsPage" data-transition="slidedown" data-icon="location" class="ui-btn-left">Map</a>
+			<h1>{{place}}</h1>
+			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+				<a href="" onclick="shareFacebook()" class="ui-mini ui-btn ui-btn-icon-right ui-icon-action ui-btn-icon-notext">Share</a>
+        <a href="#favDialog3" data-rel="popup" class="ui-mini ui-btn ui-btn-icon-right ui-icon-star ui-btn-icon-notext" data-transition="pop">Favorite</a>
+
+			</div>
+		</div>
+		
+		<div role="main" class="ui-content">
+			<div class="ui-bar ui-bar-a">
+				<h3>JLtheking said...</h3>
+				<div style="float:right; color:orange;">
+					<span>&#9733</span><span>&#9733</span><span>&#9733</span><span>&#9733</span><span>&#9733</span>
+				</div>
+			</div>
+			<div class="ui-body ui-body-a">
+				<p>This food court is awesome! Floor is clean, tables and chairs are cleared quickly, and the food selection is excellent! 5 stars!</p>
+			</div>
+			<br>
+			<div class="ui-bar ui-bar-a">
+				<h3>CrumpledPaper said...</h3>
+				<div style="float:right; color:orange;">
+					<span>&#9733</span><span>&#9733</span><span>&#9733</span><span>&#9734</span><span>&#9734</span>
+				</div>
+			</div>
+			<div class="ui-body ui-body-a">
+				<p>It's pretty good. Good variety of food, and great location, however the queue gets really really bad during peak hours.</p>
+			</div>
+			<br>
+			<br>
+			<br>
+			<div class="ui-body ui-body-a ui-corner-all">
+				<form>
+					<label for="textarea"><h4>Your Review:</h4></label>
+					<textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+					
+					<label for="slider-fill"><h4>Your Rating:</h4></label>
+					<input type="range" name="slider-fill" id="slider-fill" value="3" min="1" max="5" step="1" data-highlight="true">
+					<br>
+					<button class="ui-shadow ui-btn ui-corner-all" type="submit" id="submit-2">Submit Review</button>
+				</form>
+			</div>
+			
+		</div>
+			
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#tablesPage" data-icon="grid" data-transition="none">Tables</a></li>
+					<li><a href="#cameraPage" data-icon="camera" data-transition="none">Camera</a></li>
+					<li><a href="#" class="ui-btn-active" data-icon="comment" data-transition="none">Reviews</a></li>
+					<li><a href="#infoPage" data-icon="info" data-transition="none">Info</a></li>
+					<li><a href="#foodPage" data-icon="bullets" data-transition="none">Food List</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+	</div> <!-- /reviewsPage -->
+	
+	<div data-role="page" id="infoPage">
+	
+		<div data-role="popup" id="favDialog4" >
+		
+			<div role="main" class="ui-content">
+				<img class="centralize-image" src="/static/img/star.png">
+				<div class="ui-body ui-body-a ui-corner-all">
+					<p>Location Saved Into Favorites!</p>
+					<a href="#" data-transition="pop" class="ui-btn ui-icon-check" data-rel="back">Take Me Back!</a>
+				</div>
+			</div>
+			
+		</div> <!-- /favDialog -->
+	
+		<div data-role="header" data-position="fixed">
+			<a href="#mapsPage" data-transition="slidedown" data-icon="location" class="ui-btn-left">Map</a>
+			<h1>{{place}}</h1>
+			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+				<a href="" onclick="shareFacebook()" class="ui-mini ui-btn ui-btn-icon-right ui-icon-action ui-btn-icon-notext">Share</a>
+        <a href="#favDialog4" data-rel="popup" class="ui-mini ui-btn ui-btn-icon-right ui-icon-star ui-btn-icon-notext" data-transition="pop">Favorite</a>
+
+			</div>
+		</div>
+		
+		<div role="main" class="ui-content">
+			<div style="overflow-x: scroll;">
+				<img src="/static/img/info.jpg" style="height: 400px;" class="centralize-image">
+			</div>
+			<h3 class="ui-bar ui-bar-a ui-corner-all">About</h3>
+      <div class="ui-body ui-body-a ui-corner-all">
+          <p>[insert stall name] was created in 1995, with the intention of providing heartlanders with the best local cuisines at its time at the most affordable price.</p>
+      </div>
+			<br>
+			<h3 class="ui-bar ui-bar-a ui-corner-all">Location</h3>
+      <div class="ui-body ui-body-a ui-corner-all">
+          <p>It is currently located at Upper Thompson road, along the upper junction of Queensway and Serangoon.</p>
+      </div>
+			<br>
+			<h3 class="ui-bar ui-bar-a ui-corner-all">Seating Capacity</h3>
+      <div class="ui-body ui-body-a ui-corner-all">
+          <p>3000</p>
+      </div>
+		</div>
+			
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#tablesPage" data-icon="grid" data-transition="none">Tables</a></li>
+					<li><a href="#cameraPage" data-icon="camera" data-transition="none">Camera</a></li>
+					<li><a href="#reviewsPage" data-icon="comment" data-transition="none">Reviews</a></li>
+					<li><a href="#" class="ui-btn-active" data-icon="info">Info</a></li>
+					<li><a href="#foodPage" data-icon="bullets" data-transition="none">Food List</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+	</div> <!-- /infoPage -->
+	
+	<div data-role="page" id="foodPage">
+	
+		<div data-role="popup" id="favDialog5" >
+		
+			<div role="main" class="ui-content">
+				<img class="centralize-image" src="/static/img/star.png">
+				<div class="ui-body ui-body-a ui-corner-all">
+					<p>Location Saved Into Favorites!</p>
+					<a href="#" data-transition="pop" class="ui-btn ui-icon-check" data-rel="back">Take Me Back!</a>
+				</div>
+			</div>
+			
+		</div> <!-- /favDialog -->
+	
+		<div data-role="header" data-position="fixed">
+			<a href="#mapsPage" data-transition="slidedown" data-icon="location" class="ui-btn-left">Map</a>
+			<h1>{{place}}</h1>
+			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+				<a href="" onclick="shareFacebook()" class="ui-mini ui-btn ui-btn-icon-right ui-icon-action ui-btn-icon-notext">Share</a>
+        <a href="#favDialog5" data-rel="popup" class="ui-mini ui-btn ui-btn-icon-right ui-icon-star ui-btn-icon-notext" data-transition="pop">Favorite</a>
+
+			</div>
+		</div>
+		
+		<div role="main" class="ui-content"">
+			<table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke">
+				<thead>
+					<tr>
+						<th data-priority="3">Thumbnail</th>
+						<th data-priority="1">Food Name</th>
+						<th data-priority="2">Price Range ($)</th>
+						<th data-priority="4"><abbr title="Customer Reviews Rating">Rating</abbr></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th><img src="/static/img/thumb/1.jpg"></th>
+						<td>Salad</td>
+						<td>5-8</td>
+						<td>100%</td>
+					</tr>
+					<tr>
+						<th><img src="/static/img/thumb/2.jpg"></th>
+						<td>Smoothie</td>
+						<td>2-5</td>
+						<td>97%</td>
+					</tr>
+					<tr>
+						<th><img src="/static/img/thumb/3.jpg"></th>
+						<td>Herbal Chicken</td>
+						<td>19-27</td>
+						<td>97%</td>
+					</tr>
+					<tr>
+						<th><img src="/static/img/thumb/4.jpg"></th>
+						<td>Pork</td>
+						<td>9-13</td>
+						<td>96%</td>
+					</tr>
+					<tr>
+						<th><img src="/static/img/thumb/5.jpg"></th>
+						<td>Yummy Cake</td>
+						<td>19-42</td>
+						<td>94%</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+			
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#tablesPage" data-icon="grid" data-transition="none">Tables</a></li>
+					<li><a href="#cameraPage" data-icon="camera" data-transition="none">Camera</a></li>
+					<li><a href="#reviewsPage" data-icon="comment" data-transition="none">Reviews</a></li>
+					<li><a href="#infoPage" data-icon="info" data-transition="none">Info</a></li>
+					<li><a href="#" class="ui-btn-active" data-icon="bullets">Food List</a></li>
+					
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /footer -->
+	
+	
+	</div> <!-- /foodPage -->
 {% endblock %}

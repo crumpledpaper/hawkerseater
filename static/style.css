@@ -11,3 +11,28 @@
 	height: 30px;
 	background-color : red;
 }
+
+.circle{
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 18px;
+	border: solid 3px rgb(112,112,112);
+	background-color: #FF00FF;
+	width: 8px;
+	height: 8px;
+	float:left
+}
+
+.red{
+	background-color: #FF0000
+}
+
+.green{
+	background-color: #00FF00
+}
+
+.centralize-image{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
