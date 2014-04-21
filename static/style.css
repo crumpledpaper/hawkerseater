@@ -13,13 +13,13 @@
 }
 
 .circle{
-	-moz-border-radius: 18px;
-	-webkit-border-radius: 18px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
 	border-radius: 18px;
-	border: solid 4pt rgb(112,112,112);
+	border: solid 3px rgb(112,112,112);
 	background-color: #FF00FF;
-	width: 18px;
-	height: 18px;
+	width: 8px;
+	height: 8px;
 	float:left
 }
 
@@ -29,4 +29,10 @@
 
 .green{
 	background-color: #00FF00
+}
+
+.centralize-image{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
 }
