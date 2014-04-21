@@ -6,6 +6,7 @@ import jinja2
 import webapp2
 
 from google.appengine.api import channel
+from google.appengine.api import memcache
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'templates')),
@@ -41,34 +42,18 @@ class MainHandler(BaseHandler):
                   '67 Killiney Kopitiam',
                   '3 Rochor Road Kopitiam'
                   ]
-        self.render_template('index.html',{
-            'places' : places,
-            'token' : 'test'
-            })
+        tables = {'table_' + str(i) : memcache.get('table_' + str(i)) for i in range(8)}
+        tables['places'] = places
+        tables['img'] = memcache.get('img')
+        self.render_template('index.html',tables)
     
 class Table(BaseHandler):
-    def get(self):
-        place = self.request.get('place')
-        tables = self.request.get('tables')
-        #tables = [random.choice([True,False]) for i in range(10)]
-        self.render_template('tables.html',{
-            'tables' : tables,
-            'place' : place
-            })
-
     def post(self):
         #get data from raspberry pi
-        place = self.request.get('place')
-        tables = self.request.get('form')
-        self.redirect('/table?' + urllib.urlencode({'tables' : tables,
-                                                    'place' : place}))
-
-class Maps(BaseHandler):
-    def get(self):
-        self.render_template('maps.html',{})
+        memcache.set(key = 'img', value = self.request.get('file'))
+        memcache.set_multi({str(i):self.request.get(str(i)) for i in range(8)},key_prefix='table_', time=600)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/maps', Maps),
     ('/table', Table)
 ], debug=True)
