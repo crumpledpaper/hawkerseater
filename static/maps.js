@@ -74,10 +74,10 @@ function initialize() {
 			var myLatLng = new google.maps.LatLng(place[1], place[2]);
 			var marker = new google.maps.Marker({
 				position: myLatLng,
-				icon: ['http://maps.google.com/mapfiles/ms/icons/green-dot.png','http://maps.google.com/mapfiles/ms/icons/yellow-dot.png','http://maps.google.com/mapfiles/ms/icons/red-dot.png'][Math.floor(Math.random() * 3)],
+				icon: ['/static/img/marker-green.png','/static/img/marker-yellow.png','/static/img/marker-red.png'][Math.floor(Math.random() * 3)],
 				map: map,
 				title: place[0],
-				url: '/table?place=' + encodeURIComponent(place[0])
+				url: '/#tablesPage?place=' + encodeURIComponent(place[0])
 			});
 			google.maps.event.addListener(marker, 'click', function() {
 				window.location.href = this.url;
