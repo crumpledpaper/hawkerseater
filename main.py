@@ -1,11 +1,11 @@
 import os
 import urllib
 import random
+import base64
 
 import jinja2
 import webapp2
 
-from google.appengine.api import channel
 from google.appengine.api import memcache
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -46,11 +46,11 @@ class MainHandler(BaseHandler):
         tables['places'] = places
         tables['img'] = memcache.get('img')
         self.render_template('index.html',tables)
-    
+
 class Table(BaseHandler):
     def post(self):
         #get data from raspberry pi
-        memcache.set(key = 'img', value = self.request.get('file'))
+        memcache.set(key = 'img', value = self.request.get('image'))
         memcache.set_multi({str(i):self.request.get(str(i)) for i in range(8)},key_prefix='table_', time=600)
 
 app = webapp2.WSGIApplication([

@@ -72,6 +72,10 @@ function initialize() {
 		for (var i = 0; i < places.length; i++) {
 			var place = places[i];
 			var myLatLng = new google.maps.LatLng(place[1], place[2]);
+			var infowindow = new google.maps.InfoWindow({
+			  content: "<a data-transition='slideup' href='#tablesPage?place=" + encodeURIComponent(place[0]) + "'>" + place[0] + "</a>",
+			  maxWidth: 300
+			});
 			var marker = new google.maps.Marker({
 				position: myLatLng,
 				icon: ['/static/img/marker-green.png','/static/img/marker-yellow.png','/static/img/marker-red.png'][Math.floor(Math.random() * 3)],
@@ -81,6 +85,9 @@ function initialize() {
 			});
 			google.maps.event.addListener(marker, 'click', function() {
 				window.location.href = this.url;
+			});
+			google.maps.event.addListener(marker, 'rightclick', function() {
+				infowindow.open(map,marker);
 			});
 		}
 	}
