@@ -51,19 +51,6 @@
 		</div>
 		
 		
-		
-		<!--{% for occupied in tables %}-->
-		<!--	{% if occupied %}-->
-		<!--		<div class='full'>-->
-		<!--			Red-->
-		<!--		</div>-->
-		<!--	{% else %}-->
-		<!--		<div class='empty'>-->
-		<!--			Green-->
-		<!--		</div>-->
-		<!--	{% endif %}-->
-		<!--{% endfor %}-->
-		
 		<div role="main" class="ui-content" style="overflow-x: scroll;">
 			<div style="overflow:auto; white-space: nowrap; height:14px; width:625px;" class="centralize-image"> <!-- float-wrap -->
 				<div class={% if table_0=='False' %}"circle"{% elif table_1=='False' %}"red circle"{% else %}"green circle"{% endif %} style="margin-left:120px">&nbsp;</div>
@@ -77,18 +64,13 @@
 			</div>
 			<img src="/static/img/tables.png" style="height:500px;" class="centralize-image">
 		</div>
-		<div class="contemt-secpmdary">
-			<ul data-role="listview">
-				<li>Smoothie</li>
-			</ul>
-		</div>
+			
 		<div data-role="footer" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
 					<li><a href="#" class="ui-btn-active" data-icon="grid">Tables</a></li>
 					<li><a href="#cameraPage" data-icon="camera" data-transition="none">Camera</a></li>
 					<li><a href="#reviewsPage" data-icon="comment" data-transition="none">Reviews</a></li>
-					<li><a href="#infoPage" data-icon="info" data-transition="none">Info</a></li>
 					<li><a href="#foodPage" data-icon="bullets" data-transition="none">Food List</a></li>
 					
 				</ul>
@@ -132,7 +114,6 @@
 					<li><a href="#tablesPage" data-icon="grid" data-transition="none">Tables</a></li>
 					<li><a href="#" class="ui-btn-active" data-icon="camera">Camera</a></li>
 					<li><a href="#reviewsPage" data-icon="comment" data-transition="none">Reviews</a></li>
-					<li><a href="#infoPage" data-icon="info" data-transition="none">Info</a></li>
 					<li><a href="#foodPage" data-icon="bullets" data-transition="none">Food List</a></li>
 					
 				</ul>
@@ -209,7 +190,6 @@
 					<li><a href="#tablesPage" data-icon="grid" data-transition="none">Tables</a></li>
 					<li><a href="#cameraPage" data-icon="camera" data-transition="none">Camera</a></li>
 					<li><a href="#" class="ui-btn-active" data-icon="comment" data-transition="none">Reviews</a></li>
-					<li><a href="#infoPage" data-icon="info" data-transition="none">Info</a></li>
 					<li><a href="#foodPage" data-icon="bullets" data-transition="none">Food List</a></li>
 					
 				</ul>
@@ -218,66 +198,6 @@
 	
 	
 	</div> <!-- /reviewsPage -->
-	
-	<div data-role="page" id="infoPage">
-	
-		<div data-role="popup" id="favDialog4" >
-		
-			<div role="main" class="ui-content">
-				<img class="centralize-image" src="/static/img/star.png">
-				<div class="ui-body ui-body-a ui-corner-all">
-					<p>Location Saved Into Favorites!</p>
-					<a href="#" data-transition="pop" class="ui-btn ui-icon-check" data-rel="back">Take Me Back!</a>
-				</div>
-			</div>
-			
-		</div> <!-- /favDialog -->
-	
-		<div data-role="header" data-position="fixed">
-			<a href="#mapsPage" data-transition="slidedown" data-icon="location" class="ui-btn-left">Map</a>
-			<h1>{{place}}</h1>
-			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-				<a href="" onclick="shareFacebook()" class="ui-mini ui-btn ui-btn-icon-right ui-icon-action ui-btn-icon-notext">Share</a>
-        <a href="#favDialog4" data-rel="popup" class="ui-mini ui-btn ui-btn-icon-right ui-icon-star ui-btn-icon-notext" data-transition="pop">Favorite</a>
-
-			</div>
-		</div>
-		
-		<div role="main" class="ui-content">
-			<div style="overflow-x: scroll;">
-				<img src="/static/img/info.jpg" style="height: 400px;" class="centralize-image">
-			</div>
-			<h3 class="ui-bar ui-bar-a ui-corner-all">About</h3>
-      <div class="ui-body ui-body-a ui-corner-all">
-          <p>[insert stall name] was created in 1995, with the intention of providing heartlanders with the best local cuisines at its time at the most affordable price.</p>
-      </div>
-			<br>
-			<h3 class="ui-bar ui-bar-a ui-corner-all">Location</h3>
-      <div class="ui-body ui-body-a ui-corner-all">
-          <p>It is currently located at Upper Thompson road, along the upper junction of Queensway and Serangoon.</p>
-      </div>
-			<br>
-			<h3 class="ui-bar ui-bar-a ui-corner-all">Seating Capacity</h3>
-      <div class="ui-body ui-body-a ui-corner-all">
-          <p>3000</p>
-      </div>
-		</div>
-			
-		<div data-role="footer" data-position="fixed">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#tablesPage" data-icon="grid" data-transition="none">Tables</a></li>
-					<li><a href="#cameraPage" data-icon="camera" data-transition="none">Camera</a></li>
-					<li><a href="#reviewsPage" data-icon="comment" data-transition="none">Reviews</a></li>
-					<li><a href="#" class="ui-btn-active" data-icon="info">Info</a></li>
-					<li><a href="#foodPage" data-icon="bullets" data-transition="none">Food List</a></li>
-					
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /footer -->
-	
-	
-	</div> <!-- /infoPage -->
 	
 	<div data-role="page" id="foodPage">
 	
@@ -354,7 +274,6 @@
 					<li><a href="#tablesPage" data-icon="grid" data-transition="none">Tables</a></li>
 					<li><a href="#cameraPage" data-icon="camera" data-transition="none">Camera</a></li>
 					<li><a href="#reviewsPage" data-icon="comment" data-transition="none">Reviews</a></li>
-					<li><a href="#infoPage" data-icon="info" data-transition="none">Info</a></li>
 					<li><a href="#" class="ui-btn-active" data-icon="bullets">Food List</a></li>
 					
 				</ul>

@@ -21,7 +21,6 @@ var places = [
 	['Koufu Food Court @ SMU', 1.2968834,103.8491503],
 	['Bras Basah Complex Food Court', 1.2964436,103.8521866],
 	['Sophia Food Mall', 1.2982027,103.8441829],
-	['Juz Food Court', 1.2982027,103.8441829],
 	['67 Killiney Kopitiam', 1.2982027,103.8441829],
 	['Food Court Pte Ltd', 1.2968726,103.8416509],
 	['Koufu @ Cathay Cineleisure', 1.3023724,103.8361336],
